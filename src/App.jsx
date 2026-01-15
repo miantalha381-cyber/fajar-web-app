@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import ContactUs from './pages/ContactUs';
 
-function App() {
+// Home Page Component
+function Home() {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -109,17 +112,17 @@ function App() {
             {/* Navigation */}
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
                 <div className="navbar-content">
-                    <div className="logo">
+                    <Link to="/" className="logo">
                         <span className="logo-icon">✦</span>
                         <span className="logo-text">Luxe Events</span>
-                    </div>
+                    </Link>
 
                     <div className="nav-links">
                         <a href="#about" className="nav-link">About</a>
                         <a href="#services" className="nav-link">Services</a>
                         <a href="#portfolio" className="nav-link">Portfolio</a>
                         <a href="#testimonials" className="nav-link">Testimonials</a>
-                        <a href="#contact" className="nav-cta">Book Now</a>
+                        <Link to="/contact" className="nav-cta">Contact Us</Link>
                     </div>
 
                     <button className="mobile-menu-btn" aria-label="Toggle menu">
@@ -158,10 +161,10 @@ function App() {
                     </p>
 
                     <div className="hero-buttons">
-                        <a href="#contact" className="btn btn-primary">
+                        <Link to="/contact" className="btn btn-primary">
                             <span>Book Your Event</span>
                             <span>→</span>
-                        </a>
+                        </Link>
                         <a href="#portfolio" className="btn btn-secondary">
                             <span>View Our Work</span>
                         </a>
@@ -339,10 +342,10 @@ function App() {
                     </p>
 
                     <div className="cta-buttons">
-                        <a href="mailto:hello@luxeevents.com" className="btn btn-primary">
+                        <Link to="/contact" className="btn btn-primary">
                             <span>Get a Free Quote</span>
                             <span>→</span>
-                        </a>
+                        </Link>
                         <a href="tel:+11234567890" className="btn btn-secondary">
                             <span>Call Us Today</span>
                         </a>
@@ -397,7 +400,7 @@ function App() {
                             <li><a href="#services">Services</a></li>
                             <li><a href="#portfolio">Portfolio</a></li>
                             <li><a href="#testimonials">Testimonials</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><Link to="/contact">Contact</Link></li>
                         </ul>
                     </div>
 
@@ -429,6 +432,16 @@ function App() {
                 </div>
             </footer>
         </div>
+    );
+}
+
+// Main App Component with Routing
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<ContactUs />} />
+        </Routes>
     );
 }
 
